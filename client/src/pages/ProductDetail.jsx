@@ -27,8 +27,7 @@ const ProductDetail = () => {
       setLoading(true);
       const response = await axios.get(`/products/${productId}`);
       setProduct(response.data.product);
-      
-      // Fetch seller profile if available
+
       if (response.data.product.sellerId) {
         fetchSellerProfile(response.data.product.sellerId);
       }
@@ -48,6 +47,12 @@ const ProductDetail = () => {
       console.error('Error fetching seller profile:', error);
     }
   };
+  console.log('Debug - ProductDetail Values:', {
+    productId,
+    product,
+    sellerProfile,
+    reviews
+  });
 
   const handleSubmitReview = async (e) => {
     e.preventDefault();

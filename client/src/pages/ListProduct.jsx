@@ -10,7 +10,7 @@ const ListProduct = () => {
     quantity: '',
     description: '',
     price: '',
-    imageUrl: [''] // Array of image URLs
+    imageUrl: [''] 
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');

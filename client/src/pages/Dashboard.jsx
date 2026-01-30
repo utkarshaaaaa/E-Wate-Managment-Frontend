@@ -1,17 +1,44 @@
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from '../config/axios';
 import '../Design/Dashboard.css';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [chatGroups, setChatGroups] = useState([]);
+  const [loadingChats, setLoadingChats] = useState(false);
 
   const handleLogout = async () => {
     await logout();
     navigate('/login');
   };
 
-console.log(user);
+  // Fetch seller's chat groups
+  useEffect(() => {
+    fetchSellerChats();
+  }, []);
+
+  const fetchSellerChats = async () => {
+    try {
+      setLoadingChats(true);
+      const response = await axios.get('/chat/my-chats');
+      if (response.data.chats) {
+        setChatGroups(response.data.chats);
+      }
+    } catch (error) {
+      console.error('Error fetching chats:', error);
+    } finally {
+      setLoadingChats(false);
+    }
+  };
+  const unreadChats = chatGroups.filter(chat => chat.unreadCount > 0);
+  const totalUnread = chatGroups.reduce((sum, chat) => sum + chat.unreadCount, 0);
+
+  const handleChatClick = (chatId) => {
+    navigate(`/chat/${chatId}`);
+  };
   const navigationCards = [
     {
       title: 'Marketplace',
@@ -45,6 +72,18 @@ console.log(user);
       ),
       gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
       path: '/deviceAnalysis'
+    },
+    {
+      title: 'Messages',
+      description: 'Chat with buyers about your products',
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+      ),
+      gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+      path: '/chats',
+      badge: totalUnread > 0 ? totalUnread : null
     }
   ];
 
@@ -94,8 +133,8 @@ console.log(user);
                 </svg>
               </div>
               <div className="stat-content">
-                <p className="stat-label">Rating</p>
-                <p className="stat-value">{user?.rating  || 'N/A'}<span className="star" style={{fontSize: "42px", verticalAlign: "top"}}>⭐</span></p>
+                <p className="stat-label">Rating ⭐</p>
+                <p className="stat-value">{user?.rating || 'N/A'}<span className="star" style={{fontSize: "42px", verticalAlign: "top"}}></span></p>
               </div>
             </div>
 
@@ -120,6 +159,9 @@ console.log(user);
               <Link to={card.path} key={index} className="nav-card">
                 <div className="nav-card-icon" style={{ background: card.gradient }}>
                   {card.icon}
+                  {card.badge && (
+                    <span className="nav-card-badge">{card.badge > 99 ? '99+' : card.badge}</span>
+                  )}
                 </div>
                 <div className="nav-card-content">
                   <h3 className="nav-card-title">{card.title}</h3>

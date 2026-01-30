@@ -13,6 +13,9 @@ import DeviceAnalysis from "./pages/DeviceAnalysis";
 import ListProduct from "./pages/ListProduct";
 import Marketplace from "./pages/MarketPlace";
 import ProductDetails from "./pages/ProductDetails";
+import ChatList from "./pages/ChatList";
+import ChatConversation from "./pages/ChatConversation";
+import ChatWidget from "./pages/ChatWidget";
 
 function App() {
   return (
@@ -30,11 +33,55 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/listProduct" element={<ProtectedRoute><ListProduct /></ProtectedRoute>} />
-          <Route path="/marketplace" element={<ProtectedRoute><Marketplace /></ProtectedRoute>} />
-          <Route path="/deviceAnalysis" element={<ProtectedRoute><DeviceAnalysis /></ProtectedRoute>} />
-          <Route path="/product/:productId" element={<ProtectedRoute><ProductDetails/></ProtectedRoute>} />
+          <Route
+            path="/listProduct"
+            element={
+              <ProtectedRoute>
+                <ListProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/marketplace"
+            element={
+              <ProtectedRoute>
+                <Marketplace />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/deviceAnalysis"
+            element={
+              <ProtectedRoute>
+                <DeviceAnalysis />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/product/:productId"
+            element={
+              <ProtectedRoute>
+                <ProductDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/chats"
+            element={
+              <ProtectedRoute>
+                <ChatList />
+              </ProtectedRoute>
+            }
+          />
 
+          <Route
+            path="/chat/:chatId"
+            element={
+              <ProtectedRoute>
+                <ChatConversation />
+              </ProtectedRoute>
+            }
+          />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </AuthProvider>
