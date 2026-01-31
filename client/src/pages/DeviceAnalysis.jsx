@@ -319,7 +319,7 @@ const DeviceAnalysis = () => {
                           {loadingDescription === part ? (
                             <div className="description-loading">
                               <span className="spinner-small"></span>
-                              <span>Getting AI description...</span>
+                              <span>Getting description...</span>
                             </div>
                           ) : (
                             <p>{componentDescription[part] || 'Click to load description...'}</p>
@@ -344,7 +344,7 @@ const DeviceAnalysis = () => {
                   </div>
                   <div>
                     <h3>Damaged Components</h3>
-                    <p>{getDamagedParts().length} parts need replacement</p>
+                    <p>{getDamagedParts().length} Parts need replacement</p>
                   </div>
                 </div>
                 <div className="components-list">
