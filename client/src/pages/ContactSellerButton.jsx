@@ -11,11 +11,9 @@ const ContactSellerButton = ({ productId: propProductId, sellerId: propSellerId 
   const [loading, setLoading] = useState(false);
   const [fetchingData, setFetchingData] = useState(false);
 
-  // Use productId from props or URL params
   const productId = propProductId || urlProductId;
   const [sellerId, setSellerId] = useState(propSellerId);
 
-  // Fetch productId and sellerId if not provided as props
   useEffect(() => {
     if (!propSellerId && productId) {
       fetchProductData();

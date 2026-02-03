@@ -7,12 +7,10 @@ const ChatList = () => {
   const navigate = useNavigate();
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('all'); // 'all', 'buyer', 'seller'
+  const [filter, setFilter] = useState('all'); 
 
   useEffect(() => {
     fetchChats();
-    
-    // Poll for new messages every 5 seconds
     const interval = setInterval(fetchChats, 5000);
     return () => clearInterval(interval);
   }, []);
