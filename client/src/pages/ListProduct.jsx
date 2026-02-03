@@ -248,7 +248,6 @@ const ListProduct = () => {
         </div>
 
         <div className="tips-card">
-          <h3>💡 Tips for Listing</h3>
           <ul>
             <li>Use clear, descriptive product names</li>
             <li>Add high-quality images for better visibility</li>

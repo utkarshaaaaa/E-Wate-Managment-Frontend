@@ -91,7 +91,7 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <nav className="dashboard-nav">
         <div className="nav-brand">
-          <h2>Dashboard</h2>
+          <h2>TechQ</h2>
         </div>
         <button onClick={handleLogout} className="logout-button">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">

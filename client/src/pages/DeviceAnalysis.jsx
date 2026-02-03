@@ -238,20 +238,6 @@ const DeviceAnalysis = () => {
                   )}
                 </button>
               </form>
-
-              <div className="info-box">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <div>
-                  <strong>Interactive AI Analysis</strong>
-                  <p>
-                    ✨ Click any component to get AI-powered detailed descriptions<br/>
-                    🖼️ Optional: Generate realistic component images<br/>
-                    ⚡ Fast analysis: 5-10 seconds without images
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         ) : (
@@ -334,7 +320,6 @@ const DeviceAnalysis = () => {
                 </div>
               </div>
 
-              {/* Damaged Components */}
               <div className="results-card damaged-card">
                 <div className="card-header">
                   <div className="card-icon damaged-icon">
@@ -405,7 +390,6 @@ const DeviceAnalysis = () => {
               </div>
             </div>
 
-            {/* Summary Stats */}
             <div className="summary-stats">
               <div className="stat-box">
                 <div className="stat-icon">
