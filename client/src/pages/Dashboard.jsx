@@ -63,6 +63,17 @@ const Dashboard = () => {
       path: '/listProduct'
     },
     {
+      title: 'Manage Listings',
+      description: 'Edit your listed products',
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7h18M3 12h18M3 17h18" />
+        </svg>
+      ),
+      gradient: 'linear-gradient(135deg, #8bd3dd 0%, #5ee7df 100%)',
+      path: '/update-product'
+    },
+    {
       title: 'Device Analysis',
       description: 'Analyze device performance and metrics',
       icon: (
@@ -145,8 +156,8 @@ const Dashboard = () => {
                 </svg>
               </div>
               <div className="stat-content">
-                <p className="stat-label">Status</p>
-                <p className="stat-value">Active</p>
+                <p className="stat-label">Product Sold</p>
+                <p className="stat-value">{user?.productsSold || 0}</p>
               </div>
             </div>
           </div>

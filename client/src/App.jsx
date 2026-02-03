@@ -13,6 +13,7 @@ import DeviceAnalysis from "./pages/DeviceAnalysis";
 import ListProduct from "./pages/ListProduct";
 import Marketplace from "./pages/MarketPlace";
 import ProductDetails from "./pages/ProductDetails";
+import UpdateListedProduct from "./pages/UpdateListedProduct";
 import ChatList from "./pages/ChatList";
 import ChatConversation from "./pages/ChatConversation";
 import ChatWidget from "./pages/ChatWidget";
@@ -62,6 +63,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <ProductDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/update-product"
+            element={
+              <ProtectedRoute>
+                <UpdateListedProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/update-product/:productId"
+            element={
+              <ProtectedRoute>
+                <UpdateListedProduct />
               </ProtectedRoute>
             }
           />
