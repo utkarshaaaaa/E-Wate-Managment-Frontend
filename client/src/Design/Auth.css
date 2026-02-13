@@ -548,7 +548,6 @@ body {
   letter-spacing: 0.05em;
 }
 
-/* Form Extras */
 .form-extras {
   display: flex;
   justify-content: space-between;
@@ -585,7 +584,6 @@ body {
   color: var(--primary-light);
 }
 
-/* Button */
 .auth-button {
   margin-top: 0.5rem;
   padding: 1rem 1.5rem;
@@ -625,7 +623,7 @@ body {
 
 .auth-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.45);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
 }
 
 .auth-button:active:not(:disabled) {

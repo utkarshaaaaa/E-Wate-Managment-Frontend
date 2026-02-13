@@ -95,7 +95,7 @@ const Register = () => {
               </div>
               <h1 className="brand-title">EtechQ</h1>
             </div>
-            <p className="brand-tagline">Smarter Tech Decisions Start Here 💡</p>
+            <p className="brand-tagline">Smarter Tech Decisions Start Here.</p>
           </div>
 
           <div className="info-section">
@@ -185,10 +185,6 @@ const Register = () => {
                 Full Name
               </label>
               <div className="input-wrapper">
-                <svg className="input-icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
                 <input
                   type="text"
                   id="userName"
@@ -196,7 +192,7 @@ const Register = () => {
                   value={formData.userName}
                   onChange={handleChange}
                   className="form-input"
-                  placeholder="John Doe"
+                  placeholder="your full name"
                   required
                 />
               </div>
@@ -207,10 +203,7 @@ const Register = () => {
                 Email Address
               </label>
               <div className="input-wrapper">
-                <svg className="input-icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                
                 <input
                   type="email"
                   id="userEmail"
@@ -229,10 +222,6 @@ const Register = () => {
                 Password
               </label>
               <div className="input-wrapper">
-                <svg className="input-icon" viewBox="0 0 24 24" fill="none">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
                 <input
                   type="password"
                   id="password"
@@ -267,10 +256,6 @@ const Register = () => {
                 Confirm Password
               </label>
               <div className="input-wrapper">
-                <svg className="input-icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
                 <input
                   type="password"
                   id="confirmPassword"
