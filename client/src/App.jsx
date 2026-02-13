@@ -14,6 +14,8 @@ import ListProduct from "./pages/ListProduct";
 import Marketplace from "./pages/MarketPlace";
 import ProductDetails from "./pages/ProductDetails";
 import UpdateListedProduct from "./pages/UpdateListedProduct";
+import UserReview from "./pages/UserReview";
+import EditUserDetails from "./pages/EditUserDetails";
 import ChatList from "./pages/ChatList";
 import ChatConversation from "./pages/ChatConversation";
 import ChatWidget from "./pages/ChatWidget";
@@ -79,6 +81,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <UpdateListedProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/user-reviews"
+            element={
+              <ProtectedRoute>
+                <UserReview />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit-user-details"
+            element={
+              <ProtectedRoute>
+                <EditUserDetails />
               </ProtectedRoute>
             }
           />

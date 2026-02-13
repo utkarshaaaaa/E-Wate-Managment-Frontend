@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import axios from '../config/axios';
-import '../Design/ListProduct.css';
 import '../Design/UpdateProduct.css';
 
 const UpdateListedProduct = () => {

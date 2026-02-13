@@ -39,7 +39,7 @@
 
 .back-button:hover {
   background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
 }
 
 .list-product-content {
@@ -172,6 +172,7 @@
 
 .remove-image-button:hover {
   background: rgba(245, 87, 108, 0.25);
+  box-shadow: 0 4px 12px rgba(245, 87, 108, 0.15);
 }
 
 .add-image-button {
@@ -192,6 +193,7 @@
 
 .add-image-button:hover {
   background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
 }
 
 .form-actions {

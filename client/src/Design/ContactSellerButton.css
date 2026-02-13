@@ -17,8 +17,7 @@
 }
 
 .contact-seller-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+  box-shadow: 0 8px 24px rgba(79, 172, 254, 0.5);
 }
 
 .contact-seller-button:disabled {

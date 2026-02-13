@@ -31,7 +31,7 @@
 .back-button:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
 }
 
 .product-detail-content {
@@ -216,8 +216,7 @@
 }
 
 .buy-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.45);
 }
 
 .buy-button:disabled {
@@ -234,6 +233,7 @@
 .contact-button:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
 }
 
 .seller-info-card {
@@ -292,6 +292,7 @@
 
 .view-profile-button:hover {
   background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
 }
 
 .reviews-section {
@@ -326,8 +327,7 @@
 }
 
 .write-review-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.45);
 }
 
 .review-form {

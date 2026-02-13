@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../config/axios';
 import '../Design/marketplace.css';
@@ -8,17 +8,53 @@ const Marketplace = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [searching, setSearching] = useState(false);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(100000);
+  const [allProducts, setAllProducts] = useState([]);
+  const [visibleProducts, setVisibleProducts] = useState(new Set());
+  const [showFilter, setShowFilter] = useState(false);
+  const cardRefs = useRef({});
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const productId = entry.target.getAttribute('data-product-id');
+            setVisibleProducts((prev) => new Set([...prev, productId]));
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px 0px',
+      }
+    );
+
+    Object.values(cardRefs.current).forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      Object.values(cardRefs.current).forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, [products]);
+
   const fetchProducts = async () => {
     try {
       setLoading(true);
       const response = await axios.get('/products');
-      setProducts(response.data.products || []);
+      const fetched = response.data.products || [];
+      setAllProducts(fetched);
+      setProducts(fetched);
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {
@@ -36,7 +72,9 @@ const Marketplace = () => {
     try {
       setSearching(true);
       const response = await axios.get(`/search?name=${encodeURIComponent(searchQuery)}`);
-      setProducts(response.data.results.map(r => r.product) || []);
+      const fetched = response.data.results.map(r => r.product) || [];
+      setAllProducts(fetched);
+      applyFilters(fetched, minPrice, maxPrice);
     } catch (error) {
       console.error('Error searching products:', error);
     } finally {
@@ -50,11 +88,31 @@ const Marketplace = () => {
     try {
       setSearching(true);
       const response = await axios.post('/aiSearch', { query: searchQuery });
-      setProducts(response.data.results.map(r => r.product) || []);
+      const fetched = response.data.results.map(r => r.product) || [];
+      setAllProducts(fetched);
+      applyFilters(fetched, minPrice, maxPrice);
     } catch (error) {
       console.error('Error with AI search:', error);
     } finally {
       setSearching(false);
+    }
+  };
+
+  const applyFilters = (productList, min, max) => {
+    const filtered = productList.filter(
+      product => Number(product.price) >= min && Number(product.price) <= max
+    );
+    setProducts(filtered);
+  };
+
+  const handlePriceChange = (type, value) => {
+    const numValue = Number(value);
+    if (type === 'min') {
+      setMinPrice(numValue);
+      applyFilters(allProducts, numValue, maxPrice);
+    } else {
+      setMaxPrice(numValue);
+      applyFilters(allProducts, minPrice, numValue);
     }
   };
 
@@ -99,8 +157,81 @@ const Marketplace = () => {
               </svg>
               AI Search
             </button>
+            <button 
+              type="button" 
+              onClick={() => setShowFilter(!showFilter)}
+              className={`filter-toggle-button ${showFilter ? 'active' : ''}`}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              Filter
+            </button>
           </form>
         </div>
+
+        {showFilter && (
+          <div className="filter-section">
+          <div className="filter-header">
+            <h3>Filter by Price</h3>
+          </div>
+          <div className="price-filter">
+            <div className="price-input-group">
+              <label htmlFor="minPrice">Min Price</label>
+              <div className="price-input-wrapper">
+                <span className="currency">₹</span>
+                <input
+                  type="range"
+                  id="minPrice"
+                  min="0"
+                  max="100000"
+                  step="100"
+                  value={minPrice}
+                  onChange={(e) => handlePriceChange('min', e.target.value)}
+                  className="price-range-input"
+                />
+                <input
+                  type="number"
+                  value={minPrice}
+                  onChange={(e) => handlePriceChange('min', e.target.value)}
+                  className="price-number-input"
+                  min="0"
+                  max="100000"
+                />
+              </div>
+            </div>
+
+            <div className="price-input-group">
+              <label htmlFor="maxPrice">Max Price</label>
+              <div className="price-input-wrapper">
+                <span className="currency">₹</span>
+                <input
+                  type="range"
+                  id="maxPrice"
+                  min="0"
+                  max="100000"
+                  step="100"
+                  value={maxPrice}
+                  onChange={(e) => handlePriceChange('max', e.target.value)}
+                  className="price-range-input"
+                />
+                <input
+                  type="number"
+                  value={maxPrice}
+                  onChange={(e) => handlePriceChange('max', e.target.value)}
+                  className="price-number-input"
+                  min="0"
+                  max="100000"
+                />
+              </div>
+            </div>
+
+            <div className="price-range-display">
+              <span className="price-label">Selected Range: ₹{minPrice.toLocaleString()} - ₹{maxPrice.toLocaleString()}</span>
+            </div>
+          </div>
+        </div>
+        )}
 
         {loading ? (
           <div className="loading-state">
@@ -120,7 +251,9 @@ const Marketplace = () => {
             {products.map((product) => (
               <div 
                 key={product.productId} 
-                className="product-card"
+                ref={(el) => (cardRefs.current[product.productId] = el)}
+                data-product-id={product.productId}
+                className={`product-card ${visibleProducts.has(product.productId) ? 'visible' : ''}`}
                 onClick={() => handleProductClick(product.productId)}
               >
                 <div className="product-image">

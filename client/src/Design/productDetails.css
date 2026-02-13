@@ -244,7 +244,7 @@
 }
 
 .review-button:hover {
-  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
 }
 
 .review-form {
@@ -391,7 +391,7 @@
 
 .back-button:hover {
   background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
 }
 
 @media (max-width: 1024px) {

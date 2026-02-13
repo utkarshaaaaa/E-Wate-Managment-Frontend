@@ -34,7 +34,7 @@
 
 .back-button:hover {
   background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
 }
 
 .chat-header-info {
@@ -109,8 +109,7 @@
 }
 
 .view-product-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+  box-shadow: 0 8px 24px rgba(79, 172, 254, 0.5);
 }
 
 .chat-messages-area {
@@ -327,8 +326,7 @@
 }
 
 .send-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
 }
 
 .send-button:disabled {
@@ -387,8 +385,7 @@
 }
 
 .btn-back:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
 }
 
 @media (max-width: 768px) {
